@@ -3,12 +3,15 @@ import { Text, Container, Card, CardItem, Body, Content, Header, Item, Input, Le
 import { StackNavigator } from "react-navigation";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import {fireVar} from './../Firebase/FirebaseConfig';
+import {Actions} from "react-native-router-flux";
+
 
 export default class Home extends React.Component {
   constructor(props){
     super(props)
 
     this.userInfo = this.userInfo.bind(this)
+    this.loadView = this.loadView.bind(this)
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -26,19 +29,21 @@ export default class Home extends React.Component {
       </Header>
     )
   });
-
+  loadView(){
+    Actions.viewscreen1();
+  }
   userInfo(){
     var user = fireVar.auth().currentUser;
     var email;
     var id;
-    
+
     if (user != null) {
       email = user.email;
       id = user.uid;
     }
     console.warn(email);
-    console.warn(user.getIdToken);  
-    console.warn(id);  
+    console.warn(user.getIdToken);
+    console.warn(id);
   }
 
   render() {
@@ -72,7 +77,7 @@ export default class Home extends React.Component {
             rounded
             primary
             style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("ViewScreen")}
+            onPress={() => this.props.navigation.navigate(Actions.viewscreen1())}
           >
             <Text>ForLoop</Text>
           </Button>

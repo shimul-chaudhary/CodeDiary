@@ -3,6 +3,8 @@ import Expo from "expo";
 
 import LoginScreen from "./src/LoginScreen/LoginScreen.js";
 import Home from "./src/HomeScreen/Home.js"
+import ViewScreen from "./src/HomeScreen/ViewScreen.js"
+
 import {Router, Scene} from 'react-native-router-flux';
 
 /* Reference: http://docs.nativebase.io/docs/examples/navigation/StackNavigationExample.html */
@@ -38,6 +40,9 @@ export default class AwesomeApp extends Component {
             />
             <Scene key = {"addEntryPage"}
             component = {Home}
+            />
+          <Scene key = {"viewscreen1"}
+            component = {ViewScreen}
             />
           </Scene>
         </Router>

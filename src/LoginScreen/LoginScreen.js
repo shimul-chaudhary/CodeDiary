@@ -19,7 +19,7 @@ export default class LoginScreen extends React.Component {
   login(){
     fireVar.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
     .then(function(firebaseUser) {
-      Actions.addEntryPage() 
+      Actions.addEntryPage()
     })
     .catch(function(error) {
       // Handle Errors here.
@@ -33,13 +33,13 @@ export default class LoginScreen extends React.Component {
           alert(errorMessage);
         }
       }
-    });    
+    });
   }
 
   register(){
     fireVar.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
     .then(function(firebaseUser) {
-      Actions.addEntryPage() 
+      Actions.addEntryPage()
     })
     .catch(function(error) {
       // Handle Errors here.
@@ -55,14 +55,6 @@ export default class LoginScreen extends React.Component {
     return (
       <Container style={styles.bodyStyle}>
         <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
-              <Icon name="menu" />
-            </Button>
-          </Left>
           <Body>
             <Title>Code Diary</Title>
           </Body>
@@ -71,18 +63,18 @@ export default class LoginScreen extends React.Component {
         <Content padder>
           <Form>
             <Item>
-              <Input placeholder = "Username" 
+              <Input placeholder = "Username"
               onChangeText={(text) => this.setState({email: text})}
               value = {this.state.email}
               autoCorrect = {false}
               returnKeyType = "next"
-              autoCapitalize = "none"              
-              keyboardAppearance = "dark"              
-              
+              autoCapitalize = "none"
+              keyboardAppearance = "dark"
+
               />
             </Item>
             <Item last>
-              <Input placeholder="Password" 
+              <Input placeholder="Password"
               onChangeText={(text) => this.setState({password: text})}
               value = {this.state.password}
               secureTextEntry = {true}
