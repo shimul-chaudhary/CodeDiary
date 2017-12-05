@@ -42,6 +42,7 @@ export default class Home extends React.Component {
       })
     });
     const json = await response.json();
+    console.warn(json);
     return json;
   }
 

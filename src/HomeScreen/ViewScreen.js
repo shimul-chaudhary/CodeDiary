@@ -20,20 +20,19 @@ export default class ViewScreen extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>{this.props.data.title}</Title>
+          <Title>this.props.data.title</Title>
         </Body>
         <Right />
       </Header>
     )
   });
   render() {
-    //console.warn(this.props.data);
 
     return (
       <Container>
 
         <Content padder>
-          <Text>Code: {this.props.data.language}</Text>
+          <Text>Title: {this.props.data.title}</Text>
           <Card>
             <CardItem>
               <Text>{this.props.data.codeEntry}</Text>
@@ -48,7 +47,7 @@ export default class ViewScreen extends React.Component {
           <Text>Tags:</Text>
           <Card>
             <CardItem>
-              <Text>Tags Placeholder</Text>
+              <Text>{this.props.data.metaTags}</Text>
             </CardItem>
           </Card>
 
