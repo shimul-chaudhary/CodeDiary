@@ -1,8 +1,16 @@
 import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Left, Right, Icon, Title, Button } from "native-base";
 import {Main_styles as styles} from './../../Styles/App_styles';
+import { StyleSheet,View, Alert } from 'react-native';
 
 export default class ViewScreen extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      data: []
+    }
+  }
+
   static navigationOptions = ({ navigation }) => ({
     header: (
       <Header>
@@ -12,26 +20,29 @@ export default class ViewScreen extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>ForLoop</Title>
+          <Title>{this.props.data.title}</Title>
         </Body>
         <Right />
       </Header>
     )
   });
   render() {
+    //console.warn(this.props.data);
+
     return (
       <Container>
+
         <Content padder>
-          <Text>Code: Python</Text>
+          <Text>Code: {this.props.data.language}</Text>
           <Card>
             <CardItem>
-              <Text>Code Placeholder</Text>
+              <Text>{this.props.data.codeEntry}</Text>
             </CardItem>
           </Card>
           <Text>Comments:</Text>
           <Card>
             <CardItem>
-              <Text>Comments Placeholder</Text>
+              <Text>{this.props.data.comment}</Text>
             </CardItem>
           </Card>
           <Text>Tags:</Text>

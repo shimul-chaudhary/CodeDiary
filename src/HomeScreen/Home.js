@@ -1,50 +1,50 @@
 import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Item, Input, Left, Right, Icon, Title, Button } from "native-base";
+import { StyleSheet,View, Alert } from 'react-native';
 import { StackNavigator } from "react-navigation";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import {fireVar} from './../Firebase/FirebaseConfig';
+import axios from 'axios'
+import _ from 'lodash'
+
+
 import {Actions} from "react-native-router-flux";
 
 
 export default class Home extends React.Component {
   constructor(props){
     super(props)
-
-    this.userInfo = this.userInfo.bind(this)
-    this.loadView = this.loadView.bind(this)
+    this.state={
+        userId: fireVar.auth().currentUser.uid,
+        search_value : '',
+        data: []
+      }
   }
 
-  static navigationOptions = ({ navigation }) => ({
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
-            <Icon name="menu" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Home</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  });
-  loadView(){
-    Actions.viewscreen1();
-  }
-  userInfo(){
-    var user = fireVar.auth().currentUser;
-    var email;
-    var id;
 
-    if (user != null) {
-      email = user.email;
-      id = user.uid;
-    }
-    console.warn(email);
-    console.warn(user.getIdToken);
-    console.warn(id);
+  componentDidMount() {
+   this.getData()
+     .then((data1) => {
+       this.setState({
+         data:data1
+       })
+     });
+ }
+
+  async getData() {
+    const response = await fetch("http://localhost:4000/api/entries", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+      body: JSON.stringify({
+        firebaseID: "1234"
+      })
+    });
+    const json = await response.json();
+    return json;
   }
+
 
   render() {
     return (
@@ -68,30 +68,23 @@ export default class Home extends React.Component {
             onPress={() => this.props.navigation.navigate("NewEntry")}
           >
             <Text>Add New Entry</Text>
-          </Button>
 
-          <Text>Python:</Text>
-
-          <Button
-            full
-            rounded
-            primary
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate(Actions.viewscreen1())}
-          >
-            <Text>ForLoop</Text>
           </Button>
-          <Button
-            full
-            rounded
-            primary
-            style={{ marginTop: 10 }}
-            onPress={this.userInfo}
-          >
-            <Text>UserInfo</Text>
-          </Button>
-        </Content>
+                <View>
+                {this.state.data.map((v,index)=>{
+                     return <Button key={index} full
+                     rounded
+                     primary
+                     style={{ marginTop: 10 }}
+                     onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
+                     >
+                     <Text style={{textAlign: 'center'}}>{v.title}</Text>
+                     </Button>
+                })}
+                </View>
+                </Content>
       </Container>
     );
+
   }
 }
