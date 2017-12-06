@@ -21,6 +21,7 @@ export default class EditEntry extends React.Component {
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.stateChecker = this.stateChecker.bind(this);
     this.savestate = this.savestate.bind(this);
+    this.deletestate = this.deletestate.bind(this);
   }
   componentWillReceiveProps(nextProps) {
   if(this.props != nextProps) {
@@ -75,6 +76,25 @@ export default class EditEntry extends React.Component {
 });
 this.props.navigation.navigate(Actions.addEntryPage());
   }
+
+
+
+  deletestate(){
+    var x = "http://localhost:4000/api/code/";
+    var y = x + this.props.data._id;
+
+    fetch(y, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+  });
+  this.props.navigation.navigate(Actions.addEntryPage());
+  }
+
+
+
   render() {
 
     return (
@@ -120,6 +140,16 @@ this.props.navigation.navigate(Actions.addEntryPage());
               onPress={this.savestate}
             >
               <Text>SAVE</Text>
+            </Button>
+
+            <Button
+              full
+              rounded
+              primary
+              style={{ marginTop: 10, marginBottom: 10, backgroundColor: 'red' }}
+              onPress={this.deletestate}
+            >
+              <Text>DELETE</Text>
             </Button>
         </Content>
 

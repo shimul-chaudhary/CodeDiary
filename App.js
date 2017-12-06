@@ -45,6 +45,7 @@ export default class AwesomeApp extends Component {
           <Scene key = {"viewscreen1"}
             component = {ViewScreen}
             />
+
           <Scene key = {"EditEntry1"}
               component = {EditEntry}
               />

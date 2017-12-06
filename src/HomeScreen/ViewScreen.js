@@ -5,6 +5,7 @@ import { StyleSheet,View, Alert } from 'react-native';
 import {Actions} from "react-native-router-flux";
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
 import { ocean } from 'react-syntax-highlighter/dist/styles';
+import { Share } from 'react-native';
 
 
 export default class ViewScreen extends React.Component {
@@ -69,7 +70,18 @@ export default class ViewScreen extends React.Component {
             rounded
             primary
             style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("Share")}
+            onPress={() => Share.share({
+              message:this.props.data.codeEntry,
+              title: this.props.data.title
+            }, {
+              // Android only:
+              dialogTitle: this.props.data.title,
+              // iOS only:
+              excludedActivityTypes: [
+                'com.apple.UIKit.activity.PostToTwitter'
+              ]
+            })
+          }
           >
             <Text>Share</Text>
           </Button>
