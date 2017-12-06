@@ -3,23 +3,30 @@ import { Text, Container, Card, CardItem, Body, Content, Header, Left, Right, Ic
 import {Main_styles as styles} from './../../Styles/App_styles';
 import { StyleSheet,View, Alert,TextInput } from 'react-native';
 
-export default class NewEntry extends React.Component {
+export default class EditEntry extends React.Component {
+
   constructor(props){
     super(props)
     this.state={
-      userI:this.props.user,
-      text: '',
-      text1: '',
-      text2: '',
-      text3: '',
-      text4: ''
+      userI:this.props.data.firebaseOwnerID,
+      text:this.props.data.title,
+      text1: this.props.data.codeEntry,
+      text2: this.props.data.comment,
+      text3: this.props.data.language,
+      //text4: [this.props.data.metaTags]
 
     }
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.stateChecker = this.stateChecker.bind(this);
     this.savestate = this.savestate.bind(this);
   }
-
+  componentWillReceiveProps(nextProps) {
+  if(this.props != nextProps) {
+    this.setState({
+      text4: nextProps.data.metaTags
+    });
+  }
+}
   static navigationOptions = ({ navigation }) => ({
     header: (
       <Header>
@@ -42,17 +49,21 @@ export default class NewEntry extends React.Component {
     });
   }
   stateChecker(){
-    console.warn(this.state)
+    var x = "http://localhost:4000/api/code/";
+    var y = x + this.props.data._id;
+    console.warn(y)
   }
   savestate(){
-    fetch("http://localhost:4000/api/code", {
-      method: "POST",
+    var x = "http://localhost:4000/api/code/";
+    var y = x + this.props.data._id;
+
+    fetch(y, {
+      method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        firebaseID: this.props.user,
         language: this.state.text3,
         code: this.state.text1,
         comment: this.state.text2,
@@ -92,12 +103,7 @@ this.props.navigation.goBack();
               onChangeText={(text3) => this.setState({text3})}
               value={this.state.text3}
             />
-          <Text>Tags:</Text>
-            <TextInput
-              style={{height: 40, borderColor: 'blue', borderWidth: 1}}
-              onChangeText={(text4) => this.setState({text4})}
-              value={this.state.text4}
-            />
+
             <Button
               full
               rounded

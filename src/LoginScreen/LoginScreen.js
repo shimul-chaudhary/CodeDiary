@@ -38,7 +38,19 @@ export default class LoginScreen extends React.Component {
 
   register(){
     fireVar.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-    .then(function(firebaseUser) {
+    .then(async function(firebaseUser) {
+      var user = fireVar.auth().currentUser;
+      //console.warn('here')
+      const response = await fetch("http://localhost:4000/api/user", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          firebaseID: user.uid,
+          email: user.email
+        })
+      });
       Actions.addEntryPage()
     })
     .catch(function(error) {

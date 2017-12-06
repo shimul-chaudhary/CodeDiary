@@ -2,12 +2,14 @@ import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Left, Right, Icon, Title, Button } from "native-base";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import { StyleSheet,View, Alert } from 'react-native';
+import {Actions} from "react-native-router-flux";
+
 
 export default class ViewScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      data: []
+      data: this.props.data
     }
   }
 
@@ -20,7 +22,7 @@ export default class ViewScreen extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>this.props.data.title</Title>
+          <Title>Code Details</Title>
         </Body>
         <Right />
       </Header>
@@ -44,6 +46,12 @@ export default class ViewScreen extends React.Component {
               <Text>{this.props.data.comment}</Text>
             </CardItem>
           </Card>
+          <Text>Language:</Text>
+          <Card>
+            <CardItem>
+              <Text>{this.props.data.language}</Text>
+            </CardItem>
+          </Card>
           <Text>Tags:</Text>
           <Card>
             <CardItem>
@@ -60,6 +68,15 @@ export default class ViewScreen extends React.Component {
             onPress={() => this.props.navigation.navigate("Share")}
           >
             <Text>Share</Text>
+          </Button>
+          <Button
+            full
+            rounded
+            primary
+            style={{ marginTop: 10 }}
+            onPress={() => this.props.navigation.navigate(Actions.EditEntry1({ data : this.props.data }) )}
+          >
+            <Text>Edit</Text>
           </Button>
         </Content>
       </Container>

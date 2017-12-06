@@ -38,11 +38,10 @@ export default class Home extends React.Component {
         "Content-Type": "application/json"
         },
       body: JSON.stringify({
-        firebaseID: "1234"
+        firebaseID: this.state.userId
       })
     });
     const json = await response.json();
-    console.warn(json);
     return json;
   }
 
@@ -66,7 +65,7 @@ export default class Home extends React.Component {
             rounded
             primary
             style={{ marginTop: 10, marginBottom: 10, backgroundColor: 'green' }}
-            onPress={() => this.props.navigation.navigate("NewEntry")}
+            onPress={() => this.props.navigation.navigate(Actions.addscreen1({user:this.state.userId}))}
           >
             <Text>Add New Entry</Text>
 
@@ -84,6 +83,7 @@ export default class Home extends React.Component {
                 })}
                 </View>
                 </Content>
+
       </Container>
     );
 
