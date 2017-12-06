@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Left, Right, Icon, Title, Button } from "native-base";
 import {Main_styles as styles} from './../../Styles/App_styles';
-import { StyleSheet,View, Alert,TextInput } from 'react-native';
+import { StyleSheet,View, Alert,TextInput,Picker } from 'react-native';
 
 export default class NewEntry extends React.Component {
   constructor(props){
@@ -87,11 +87,15 @@ this.props.navigation.goBack();
                 value={this.state.text2}
               />
           <Text>Language:</Text>
-            <TextInput
-              style={{height: 40, borderColor: 'blue', borderWidth: 1}}
-              onChangeText={(text3) => this.setState({text3})}
-              value={this.state.text3}
-            />
+            <Picker
+              selectedValue={this.state.text3}
+              onValueChange={(itemValue, itemIndex) => this.setState({text3: itemValue})}>
+              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="JavaScript" value="javaScript" />
+              <Picker.Item label="Python" value="python" />
+              <Picker.Item label="Ruby" value="ruby" />
+              <Picker.Item label="Elm" value="elm" />
+            </Picker>
           <Text>Tags:</Text>
             <TextInput
               style={{height: 40, borderColor: 'blue', borderWidth: 1}}
