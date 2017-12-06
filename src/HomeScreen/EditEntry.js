@@ -90,6 +90,7 @@ this.props.navigation.goBack();
                 style={{height: 40, borderColor: 'blue', borderWidth: 1}}
                 onChangeText={(text1) => this.setState({text1})}
                 value={this.state.text1}
+                multiline={true}
               />
           <Text>Comments:</Text>
               <TextInput
@@ -106,6 +107,7 @@ this.props.navigation.goBack();
               <Picker.Item label="Python" value="python" />
               <Picker.Item label="Ruby" value="ruby" />
               <Picker.Item label="Elm" value="elm" />
+              <Picker.Item label="React" value="react" />
             </Picker>
 
             <Button

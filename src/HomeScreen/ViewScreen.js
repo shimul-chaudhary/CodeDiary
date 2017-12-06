@@ -41,10 +41,8 @@ export default class ViewScreen extends React.Component {
           <Text>Title: {this.props.data.title}</Text>
           <Text>---</Text>
           <Text>Code:</Text>
-          <Card>
-
+          <Card style={{width: 350, height: 200, backgroundColor: 'powderblue'}}>
               <SyntaxHighlighter language={this.props.data.language} style={ocean}>{this.props.data.codeEntry}</SyntaxHighlighter>
-            
           </Card>
           <Text>Comments:</Text>
           <Card>
