@@ -21,6 +21,16 @@ export default class Home extends React.Component {
       }
   }
 
+  componentWillMount() {
+    //console.warn("here");
+    this.getData()
+      .then((data1) => {
+        this.setState({
+          data:data1
+        })
+      });
+    //  console.warn();
+  }
 
   componentDidMount() {
    this.getData()

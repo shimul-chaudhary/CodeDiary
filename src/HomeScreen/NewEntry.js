@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Left, Right, Icon, Title, Button } from "native-base";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import { StyleSheet,View, Alert,TextInput,Picker } from 'react-native';
+import {Actions} from "react-native-router-flux";
 
 export default class NewEntry extends React.Component {
   constructor(props){
@@ -60,7 +61,7 @@ export default class NewEntry extends React.Component {
         tags: this.state.text4
   })
 });
-this.props.navigation.goBack();
+this.props.navigation.navigate(Actions.addEntryPage());
   }
   render() {
 
