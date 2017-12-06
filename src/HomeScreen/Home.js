@@ -1,11 +1,13 @@
 import React from "react";
-import { Text, Container, Card, CardItem, Body, Content, Header, Item, Input, Left, Right, Icon, Title, Button } from "native-base";
-import { StyleSheet,View, Alert } from 'react-native';
+import { Text, Container, Card, CardItem, Body, Content, Header, Item, Input, Left, Right, Icon, Title, Button,List,ListItem } from "native-base";
+import { StyleSheet,View, Alert, FlatList } from 'react-native';
 import { StackNavigator } from "react-navigation";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import {fireVar} from './../Firebase/FirebaseConfig';
 import axios from 'axios'
 import _ from 'lodash'
+import SyntaxHighlighter from 'react-native-syntax-highlighter';
+import { ocean,tomorrowNightBlue } from 'react-syntax-highlighter/dist/styles';
 
 
 import {Actions} from "react-native-router-flux";
@@ -80,20 +82,27 @@ export default class Home extends React.Component {
             <Text>Add New Entry</Text>
 
           </Button>
-                <View>
-                {this.state.data.map((v,index)=>{
-                     return <Button key={index} full
-                     rounded
-                     primary
-                     style={{ marginTop: 10 }}
-                     onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
-                     >
-                     <Text style={{textAlign: 'center'}}>{v.title}</Text>
-                     </Button>
-                })}
-                </View>
-                </Content>
 
+          <List>
+          {this.state.data.map((v,index)=>{
+               return <ListItem key={index} full
+               rounded
+               primary
+               style={{ marginTop: 10 },{padding: 10 }}
+               button = {true}
+
+               onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
+               >
+                 <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
+                    <Text style={{textAlign: 'Left'}} >{v.title}</Text>
+                    <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
+                    <Text style={{fontSize: 15},{color: 'blue'}} >{v.language}</Text>
+                  </Card>
+
+               </ListItem>
+          })}
+          </List>
+                </Content>
       </Container>
     );
 
