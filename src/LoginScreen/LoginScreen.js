@@ -68,7 +68,7 @@ export default class LoginScreen extends React.Component {
       <Container style={styles.bodyStyle}>
         <Header>
           <Body>
-            <Title>Code Diary</Title>
+            <Title>[Code Snippets]</Title>
           </Body>
           <Right />
         </Header>
