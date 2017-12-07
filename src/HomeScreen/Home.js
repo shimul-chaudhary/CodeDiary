@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Item, Input, Left, Right, Icon, Title, Button,List,ListItem } from "native-base";
-import { StyleSheet,View, Alert, FlatList } from 'react-native';
+import { StyleSheet,View, Alert, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { StackNavigator,NavigationActions } from "react-navigation";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import {fireVar} from './../Firebase/FirebaseConfig';
@@ -8,6 +8,10 @@ import axios from 'axios'
 import _ from 'lodash'
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
 import { ocean,tomorrowNightBlue } from 'react-syntax-highlighter/dist/styles';
+
+
+import SearchInput, { createFilter } from 'react-native-search-filter';
+const KEYS_TO_FILTERS = ['language','title'];
 
 
 import {Actions} from "react-native-router-flux";
@@ -19,9 +23,16 @@ export default class Home extends React.Component {
     this.state={
         userId: fireVar.auth().currentUser.uid,
         search_value : '',
-        data: []
+        data: [],
+        searchTerm: ''
       }
+
   }
+
+  searchUpdated(term) {
+    this.setState({ searchTerm: term })
+  }
+
 
   componentWillMount() {
     //console.warn("here");
@@ -73,12 +84,14 @@ export default class Home extends React.Component {
   });
 
   render() {
+    const code_filter = this.state.data.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+    //console.warn(filteredEmails);
     return (
       <Container>
         <Header searchBar rounded>
           <Item>
             <Icon name="ios-search" />
-            <Input placeholder="Search" />
+            <Input placeholder="Search" onChangeText={(term) => { this.searchUpdated(term) }}/>
             <Icon name="ios-mic" />
           </Item>
           <Button transparent>
@@ -96,27 +109,22 @@ export default class Home extends React.Component {
             <Text>Add New Entry</Text>
 
           </Button>
+          <View style={styles.container}>
+            <ScrollView>
+              {code_filter.map(v => {
+                return (
+                  <TouchableOpacity >
+                    <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
+                      <Text style={{textAlign: 'left'}} >{v.title}</Text>
+                      <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
+                      <Text style={{fontSize: 15, color: 'blue'}} >{v.language}</Text>
+                    </Card>
+                  </TouchableOpacity>
+                )
+              })}
+            </ScrollView>
+          </View>
 
-          <List>
-          {this.state.data.map((v,index)=>{
-              return <ListItem key={index} full
-               rounded
-               primary
-               style={{ marginTop: 10 },{padding: 10 }}
-               button = {true}
-
-               onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
-               >
-
-               <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
-                    <Text style={{textAlign: 'Left'}} >{v.title}</Text>
-                    <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
-                    <Text style={{fontSize: 15},{color: 'blue'}} >{v.language}</Text>
-                 </Card>
-
-               </ListItem>
-          })}
-          </List>
                 </Content>
       </Container>
     );

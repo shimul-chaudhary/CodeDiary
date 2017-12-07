@@ -23,13 +23,6 @@ export default class EditEntry extends React.Component {
     this.savestate = this.savestate.bind(this);
     this.deletestate = this.deletestate.bind(this);
   }
-  componentWillReceiveProps(nextProps) {
-  if(this.props != nextProps) {
-    this.setState({
-      text4: nextProps.data.metaTags
-    });
-  }
-}
 
   inputChangeHandler(event){
     this.setState({
@@ -100,7 +93,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
       <Container>
         <Header>
           <Left>
-          
+
           </Left>
           <Body>
             <Title>Edit Entry</Title>
