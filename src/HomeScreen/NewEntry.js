@@ -20,23 +20,6 @@ export default class NewEntry extends React.Component {
     this.stateChecker = this.stateChecker.bind(this);
     this.savestate = this.savestate.bind(this);
   }
-
-  static navigationOptions = ({ navigation }) => ({
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Code Details</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  });
-
   inputChangeHandler(event){
     this.setState({
       value: event.target.c_code
@@ -67,7 +50,17 @@ this.props.navigation.navigate(Actions.addEntryPage());
 
     return (
       <Container>
-
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.navigate(Actions.addEntryPage())}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Add New Entry</Title>
+          </Body>
+          <Right />
+        </Header>
         <Content padder>
           <Text>Title:</Text>
             <TextInput

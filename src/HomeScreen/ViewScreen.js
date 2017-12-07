@@ -15,27 +15,20 @@ export default class ViewScreen extends React.Component {
       data: this.props.data
     }
   }
-
-  static navigationOptions = ({ navigation }) => ({
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Code Details</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  });
-
-
   render() {
     return (
       <Container>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.navigate(Actions.addEntryPage())}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Code Details</Title>
+          </Body>
+          <Right />
+        </Header>
         <Content padder>
 
 
