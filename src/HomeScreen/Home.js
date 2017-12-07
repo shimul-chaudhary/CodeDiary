@@ -85,7 +85,7 @@ export default class Home extends React.Component {
 
           <List>
           {this.state.data.map((v,index)=>{
-               return <Card key={index} full
+              return <ListItem key={index} full
                rounded
                primary
                style={{ marginTop: 10 },{padding: 10 }}
@@ -94,14 +94,13 @@ export default class Home extends React.Component {
                onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
                >
 
-                      <Item stackedLabel onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>
-                        <Text onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.title}</Text>
-                      </Item>
-                      <Item stackedLabel last onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }))} style={{width: '100%', height: 100}}>
-                        <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
-                      </Item>
+               <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
+                    <Text style={{textAlign: 'Left'}} >{v.title}</Text>
+                    <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
+                    <Text style={{fontSize: 15},{color: 'blue'}} >{v.language}</Text>
+                 </Card>
 
-               </Card>
+               </ListItem>
           })}
           </List>
                 </Content>
