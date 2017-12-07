@@ -109,21 +109,29 @@ export default class Home extends React.Component {
             <Text>Add New Entry</Text>
 
           </Button>
-          <View style={styles.container}>
-            <ScrollView>
-              {code_filter.map(v => {
-                return (
-                  <TouchableOpacity >
-                    <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
-                      <Text style={{textAlign: 'left'}} >{v.title}</Text>
-                      <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
-                      <Text style={{fontSize: 15, color: 'blue'}} >{v.language}</Text>
-                    </Card>
-                  </TouchableOpacity>
-                )
-              })}
-            </ScrollView>
-          </View>
+          <List>
+         {code_filter.map(v => {
+             return <ListItem full
+              rounded
+              primary
+              style={{ marginTop: 10 },{padding: 10 }}
+              button = {true}
+
+              onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
+              >
+
+              <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
+                   <Text style={{textAlign: 'Left'}} >{v.title}</Text>
+                   <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
+                   <Text style={{fontSize: 15},{color: 'blue'}} >{v.language}</Text>
+                </Card>
+
+              </ListItem>
+         })}
+         </List>
+
+
+          
 
                 </Content>
       </Container>

@@ -25,10 +25,6 @@ export default class ViewScreen extends React.Component {
             <Icon name="arrow-back" />
           </Button>
         </Left>
-        <Body>
-          <Title>Home</Title>
-        </Body>
-        <Right />
       </Header>
     )
   });
