@@ -77,7 +77,21 @@ this.props.navigation.navigate(Actions.addEntryPage());
   });
   this.props.navigation.navigate(Actions.addEntryPage());
   }
-
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.navigate(Actions.addEntryPage())}>
+            <Icon name="arrow-back" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Home</Title>
+        </Body>
+        <Right />
+      </Header>
+    )
+  });
 
 
   render() {
@@ -86,9 +100,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
       <Container>
         <Header>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.navigate(Actions.addEntryPage())}>
-              <Icon name="arrow-back" />
-            </Button>
+          
           </Left>
           <Body>
             <Title>Edit Entry</Title>

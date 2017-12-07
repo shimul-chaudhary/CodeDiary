@@ -62,7 +62,21 @@ export default class LoginScreen extends React.Component {
       }
     });
   }
-
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.navigate(Actions.login())}>
+            <Text></Text>
+          </Button>
+        </Left>
+        <Body>
+          <Title>Log In</Title>
+        </Body>
+        <Right />
+      </Header>
+    )
+  });
   render() {
     return (
       <Container style={styles.bodyStyle}>

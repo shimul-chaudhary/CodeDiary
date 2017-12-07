@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Item, Input, Left, Right, Icon, Title, Button,List,ListItem } from "native-base";
 import { StyleSheet,View, Alert, FlatList } from 'react-native';
-import { StackNavigator } from "react-navigation";
+import { StackNavigator,NavigationActions } from "react-navigation";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import {fireVar} from './../Firebase/FirebaseConfig';
 import axios from 'axios'
@@ -56,7 +56,21 @@ export default class Home extends React.Component {
     const json = await response.json();
     return json;
   }
-
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.navigate(Actions.login())}>
+            <Text>Log Off</Text>
+          </Button>
+        </Left>
+        <Body>
+          <Title>Home</Title>
+        </Body>
+        <Right />
+      </Header>
+    )
+  });
 
   render() {
     return (
