@@ -11,7 +11,7 @@ import { ocean,tomorrowNightBlue } from 'react-syntax-highlighter/dist/styles';
 
 
 import SearchInput, { createFilter } from 'react-native-search-filter';
-const KEYS_TO_FILTERS = ['language','title'];
+const KEYS_TO_FILTERS = ['language','title', 'comment'];
 
 
 import {Actions} from "react-native-router-flux";
@@ -114,16 +114,16 @@ export default class Home extends React.Component {
              return <ListItem full
               rounded
               primary
-              style={{ marginTop: 10 },{padding: 10 }}
+              style={{ marginTop: 10 ,padding: 10 }}
               button = {true}
 
               onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
               >
 
               <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
-                   <Text style={{textAlign: 'Left'}} >{v.title}</Text>
+                   <Text style={{textAlign: 'left'}} >{v.title}</Text>
                    <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
-                   <Text style={{fontSize: 15},{color: 'blue'}} >{v.language}</Text>
+                   <Text style={{fontSize: 15, color: 'blue'}} >{v.language}</Text>
                 </Card>
 
               </ListItem>
