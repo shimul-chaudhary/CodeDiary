@@ -55,7 +55,7 @@ export default class Home extends React.Component {
  }
 
   async getData() {
-    const response = await fetch("http://localhost:4000/api/entries", {
+    const response = await fetch("http://165.227.123.227:4001/api/entries", {
         method: "POST",
         headers: {
         "Content-Type": "application/json"
@@ -131,7 +131,7 @@ export default class Home extends React.Component {
          </List>
 
 
-          
+
 
                 </Content>
       </Container>

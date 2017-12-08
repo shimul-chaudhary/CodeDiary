@@ -25,21 +25,16 @@ export default class ViewScreen extends React.Component {
             <Icon name="arrow-back" />
           </Button>
         </Left>
+        <Body>
+          <Title>Code Details</Title>
+        </Body>
+        <Right></Right>
       </Header>
     )
   });
   render() {
     return (
       <Container>
-        <Header>
-          <Left>
-
-          </Left>
-          <Body>
-            <Title>Code Details</Title>
-          </Body>
-          <Right />
-        </Header>
         <Content padder>
 
           <Text>Title: {this.props.data.title}</Text>
@@ -67,7 +62,7 @@ export default class ViewScreen extends React.Component {
             </CardItem>
           </Card>
 
-          {/* TODO: implement built in share instead of making a separate share component, Share button is not fully functional */}
+
           <Button
             full
             rounded
@@ -97,6 +92,8 @@ export default class ViewScreen extends React.Component {
           >
             <Text>Edit</Text>
           </Button>
+
+          
         </Content>
       </Container>
     );

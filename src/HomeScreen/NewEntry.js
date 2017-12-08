@@ -29,7 +29,7 @@ export default class NewEntry extends React.Component {
     console.warn(this.state)
   }
   savestate(){
-    fetch("http://localhost:4000/api/code", {
+    fetch("http://165.227.123.227:4001/api/code", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -67,7 +67,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
       <Container>
         <Header>
           <Left>
-          
+
           </Left>
           <Body>
             <Title>Add New Entry</Title>
