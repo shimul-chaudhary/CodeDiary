@@ -41,7 +41,7 @@ export default class LoginScreen extends React.Component {
     .then(async function(firebaseUser) {
       var user = fireVar.auth().currentUser;
       //console.warn('here')
-      const response = await fetch("http://localhost:4000/api/user", {
+      const response = await fetch("http://165.227.123.227:4001/api/user", {
         method: "POST",
         headers: {
         "Content-Type": "application/json"

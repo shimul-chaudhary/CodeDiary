@@ -30,12 +30,12 @@ export default class EditEntry extends React.Component {
     });
   }
   stateChecker(){
-    var x = "http://localhost:4000/api/code/";
+    var x = "http://165.227.123.227:4001/api/code/";
     var y = x + this.props.data._id;
     console.warn(y)
   }
   savestate(){
-    var x = "http://localhost:4000/api/code/";
+    var x = "http://165.227.123.227:4001/api/code/";
     var y = x + this.props.data._id;
 
     fetch(y, {
@@ -58,7 +58,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
 
 
   deletestate(){
-    var x = "http://localhost:4000/api/code/";
+    var x = "http://165.227.123.227:4001/api/code/";
     var y = x + this.props.data._id;
 
     fetch(y, {
