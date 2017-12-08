@@ -1,6 +1,6 @@
 import React from "react";
-import { StatusBar } from "react-native";
-import { Button, Text, Container, Card, CardItem, Body, Content, Header, Title, Left, Icon, Right, Form, Item, Input } from "native-base";
+import { StatusBar, View, Image } from "react-native";
+import { Button, Text, Container, Card, CardItem, Body, Content, Header, Title, Left, Icon, Right, Form, Item, Input, Label } from "native-base";
 import {Main_styles as styles} from './../../Styles/App_styles';
 import {fireVar} from './../Firebase/FirebaseConfig';
 import {Actions} from "react-native-router-flux";
@@ -62,59 +62,65 @@ export default class LoginScreen extends React.Component {
       }
     });
   }
+
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header>
+      <Header style = {{backgroundColor: 'white'}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.login())}>
             <Text></Text>
           </Button>
         </Left>
         <Body>
-          <Title>Log In</Title>
+          {/* <Title>Log In</Title> */}
         </Body>
         <Right />
       </Header>
     )
   });
+
   render() {
     return (
       <Container style={styles.bodyStyle}>
-        <Header>
-          <Body>
-            <Title>[Code Snippets]</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content padder>
+       <Content padder>
+        <View style = {styles.logImg}>
+          <Image
+            source={require('./../../cs_login.png')}
+          />
+        </View>
           <Form>
-            <Item>
-              <Input placeholder = "Username"
+            <Item floatingLabel
+            underline = {true}
+            style = {{marginTop: 50}}>
+            <Label>Email</Label>
+              <Input 
               onChangeText={(text) => this.setState({email: text})}
               value = {this.state.email}
               autoCorrect = {false}
               returnKeyType = "next"
               autoCapitalize = "none"
               keyboardAppearance = "dark"
-
               />
             </Item>
-            <Item last>
-              <Input placeholder="Password"
+            <Item floatingLabel
+            style = {{marginTop: 30}}>
+            <Label>Password</Label>
+              <Input 
               onChangeText={(text) => this.setState({password: text})}
               value = {this.state.password}
               secureTextEntry = {true}
               autoCorrect = {false}
               autoCapitalize = "none"
               returnKeyType = "done"
-              keyboardAppearance = "dark" />
+              keyboardAppearance = "dark" 
+              />
             </Item>
           </Form>
           <Button
             full
             rounded
             primary
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 40 }}
             onPress = {this.login}
             //onPress={() => this.props.navigation.navigate("Home")}
             >

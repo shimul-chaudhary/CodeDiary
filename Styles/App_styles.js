@@ -15,7 +15,12 @@ export const styles = StyleSheet.create({
 export const Main_styles = {
     bodyStyle: {
       flex: 1,
-      marginTop: StatusBar.currentHeight
+      marginTop: StatusBar.currentHeight,
+      backgroundColor: 'white'
+    },
+    logImg:{
+      marginTop: 150,
+      marginLeft: 40,
     },
     titleStyle: {
       fontSize: 32,
