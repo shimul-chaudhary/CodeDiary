@@ -19,7 +19,7 @@ export default class ViewScreen extends React.Component {
   }
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header style = {{backgroundColor: '#2f2f2f'}}>
+      <Header style = {{backgroundColor: '#2f2f2f', borderBottomWidth: 0}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.addEntryPage())}>
             <Icon style = {{color: '#BC3908'}} name="arrow-back" />

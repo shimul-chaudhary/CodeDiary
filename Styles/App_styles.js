@@ -59,13 +59,10 @@ export const Main_styles = {
       backgroundColor: '#417B5A',
       width: 150,
       height: 40,
-      flex:1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginLeft: 110
+      //marginLeft: 110
     },
     newEntryBtnView:{
-      flex: 1,
+      flexDirection: "row",
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 10,
@@ -83,31 +80,42 @@ export const Main_styles = {
       color: 'white'
     },
     homeListStyle:{
-      marginTop: 10,
       backgroundColor: '#2f2f2f',
       borderBottomWidth: 0,
       borderRightWidth: 0,
       borderLeftWidth: 0,
-      borderTopWidth: 0
+      marginLeft: 0,
+      marginRight: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderTopWidth: 0,
     },
     bigListStyle:{
       backgroundColor: '#2f2f2f',
       borderBottomWidth: 0,
       borderRightWidth: 0,
       borderLeftWidth: 0,
-      borderTopWidth: 0
+      borderTopWidth: 0,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    cardBtnView:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
     },
     cardStyle:{
       backgroundColor: '#417B5A',
       width: '100%', 
+      marginLeft: 0,
+      marginRight: 0,
       height: 200,
-      marginTop: 20,
       borderColor: '#417B5A',
       borderBottomWidth: 5,
       borderRightWidth: 5,
       borderLeftWidth: 5,
       borderBottomColor: '#417B5A',
-      borderTopWidth: 5
+      borderTopWidth: 5,
     },
     deleteBtn:{
       backgroundColor: '#BC3908',

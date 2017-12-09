@@ -8,7 +8,7 @@ import axios from 'axios'
 import _ from 'lodash'
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
 import { ocean,tomorrowNightBlue,tomorrowNightEighties,atelierLakesideLight} from 'react-syntax-highlighter/dist/styles';
-
+console.disableYellowBox = true;
 
 import SearchInput, { createFilter } from 'react-native-search-filter';
 const KEYS_TO_FILTERS = ['language','title', 'comment'];
@@ -46,13 +46,13 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-   this.getData()
-     .then((data1) => {
-       this.setState({
-         data:data1
-       })
-     });
- }
+  this.getData()
+    .then((data1) => {
+      this.setState({
+        data:data1
+      })
+    });
+}
 
   async getData() {
     const response = await fetch("http://165.227.123.227:4001/api/entries", {
@@ -69,7 +69,8 @@ export default class Home extends React.Component {
   }
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header style = {{backgroundColor: '#2f2f2f'}}>
+      <Header 
+      style = {{backgroundColor: '#2f2f2f', borderBottomWidth: 0}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.login())}>
             <Text style = {{color: '#BC3908'}}>Log Off</Text>
@@ -98,7 +99,6 @@ export default class Home extends React.Component {
             full
             rounded
             primary
-            //style={{ marginTop: 10, marginBottom: 10, backgroundColor: 'green' }}
             style = {styles.newEntryBtn}
             onPress={() => this.props.navigation.navigate(Actions.addscreen1({user:this.state.userId}))}
           >
@@ -113,7 +113,7 @@ export default class Home extends React.Component {
               style = {styles.homeListStyle}
               onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
               >
-
+              <View style = {styles.cardBtnView}>
               <Card transparent = {true} 
                       bordered = {false} 
                       style = {styles.cardStyle} 
@@ -127,6 +127,7 @@ export default class Home extends React.Component {
                   style={tomorrowNightEighties} 
                   onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
                 </Card>
+                </View>
 
               </ListItem>
             })}

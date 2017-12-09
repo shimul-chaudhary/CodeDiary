@@ -65,7 +65,7 @@ export default class LoginScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header style = {{backgroundColor: '#2f2f2f'}}>
+      <Header style = {{backgroundColor: '#2f2f2f', borderBottomWidth: 0}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.login())}>
             <Text></Text>
