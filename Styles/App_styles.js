@@ -91,7 +91,11 @@ export const Main_styles = {
       borderTopWidth: 0
     },
     bigListStyle:{
-      
+      backgroundColor: '#2f2f2f',
+      borderBottomWidth: 0,
+      borderRightWidth: 0,
+      borderLeftWidth: 0,
+      borderTopWidth: 0
     },
     cardStyle:{
       backgroundColor: '#417B5A',

@@ -92,20 +92,20 @@ this.props.navigation.navigate(Actions.addEntryPage());
         <Content padder>
           <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Title:</Text>
             <TextInput
-              style={{height: 40, borderColor: 'white', borderWidth: 1, backgroundColor: 'white'}}
+              style={{height: 40, borderColor: 'white', borderWidth: 1, backgroundColor: '#EDEDF4'}}
               onChangeText={(text) => this.setState({text})}
               value={this.state.text}
             />
           <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Code:</Text>
               <TextInput
-                style={{height: 200, borderColor: '#417B5A', borderWidth: 5, backgroundColor: 'white'}}
+                style={{height: 200, borderColor: '#417B5A', borderWidth: 5, backgroundColor: '#EDEDF4'}}
                 onChangeText={(text1) => this.setState({text1})}
                 value={this.state.text1}
                 multiline={true}
               />
           <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Comments:</Text>
               <TextInput
-                style={{height: 40, borderColor: 'white', borderWidth: 1, backgroundColor: 'white'}}
+                style={{height: 40, borderColor: 'white', borderWidth: 1, backgroundColor: '#EDEDF4'}}
                 onChangeText={(text2) => this.setState({text2})}
                 value={this.state.text2}
               />

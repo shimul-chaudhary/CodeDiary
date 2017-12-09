@@ -87,7 +87,7 @@ export default class LoginScreen extends React.Component {
           <Image
             resizeMethod = "auto"
             resizeMode = "cover"
-            source={require('./../../snippet_img.png')}
+            source={require('./../../snippet_big.png')}
           />
         </View>
           <Form style = {{marginTop: 70}}>

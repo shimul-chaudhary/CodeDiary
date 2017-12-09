@@ -90,7 +90,7 @@ export default class Home extends React.Component {
           <Item rounded = {true}
           style = {styles.itemInput}>
             <Icon style = {{marginLeft: 10, marginRight: 10}} name="ios-search" />
-            <Input placeholder="Search" onChangeText={(term) => { this.searchUpdated(term) }}/>
+            <Input placeholder="Search (language, title or comments)" onChangeText={(term) => { this.searchUpdated(term) }}/>
           </Item>
         <Content padder>
         <View style = {styles.newEntryBtnView}> 
@@ -106,11 +106,10 @@ export default class Home extends React.Component {
 
           </Button>
           </View>
-          <View style = {styles.bigListStyle}>
-          <List
+          <List style = {styles.bigListStyle}
           rounded = {true}>
           {code_filter.map(v => {
-            return <ListItem full
+            return <ListItem
               style = {styles.homeListStyle}
               onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
               >
@@ -127,15 +126,11 @@ export default class Home extends React.Component {
                   language={v.language}  
                   style={tomorrowNightEighties} 
                   onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
-                  <View style = {{backgroundColor: "red"}}>
-                  {/* <Text style={{fontSize: 15, fontFamily: "Helvetica Neue", color: 'white'}} >{v.language}</Text> */}
-                  </View>
                 </Card>
 
               </ListItem>
             })}
           </List>
-          </View>
           </Content>
       </Container>
     );
