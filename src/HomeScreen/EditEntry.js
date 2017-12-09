@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Container, Card, CardItem, Body, Content, Header, Left, Right, Icon, Title, Button } from "native-base";
 import {Main_styles as styles} from './../../Styles/App_styles';
-import { StyleSheet,View, Alert,TextInput,Picker } from 'react-native';
+import { StyleSheet,View, Alert,TextInput,Picker, ScrollView } from 'react-native';
 import {Actions} from "react-native-router-flux";
 
 
@@ -88,6 +88,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
   render() {
 
     return (
+    <ScrollView>
       <Container style = {styles.bodyStyle}>
         <Content padder>
           <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Title:</Text>
@@ -144,6 +145,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
         </Content>
 
       </Container>
+      </ScrollView>
     );
   }
 }

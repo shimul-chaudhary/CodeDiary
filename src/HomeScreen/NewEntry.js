@@ -55,7 +55,7 @@ this.props.navigation.navigate(Actions.addEntryPage());
           </Button>
         </Left>
         <Body>
-          <Title style = {{color: 'white'}}>Add New Entry</Title>
+          <Title style = {{color: 'white'}}>Add Entry</Title>
         </Body>
         <Right />
       </Header>

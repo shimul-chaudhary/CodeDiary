@@ -139,5 +139,6 @@ export const Main_styles = {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      marginBottom: 80
     },
 }
