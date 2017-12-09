@@ -7,7 +7,7 @@ import {fireVar} from './../Firebase/FirebaseConfig';
 import axios from 'axios'
 import _ from 'lodash'
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
-import { ocean,tomorrowNightBlue } from 'react-syntax-highlighter/dist/styles';
+import { ocean,tomorrowNightBlue,tomorrowNightEighties,atelierLakesideLight} from 'react-syntax-highlighter/dist/styles';
 
 
 import SearchInput, { createFilter } from 'react-native-search-filter';
@@ -69,14 +69,14 @@ export default class Home extends React.Component {
   }
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header>
+      <Header style = {{backgroundColor: '#2f2f2f'}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.login())}>
-            <Text>Log Off</Text>
+            <Text style = {{color: '#BC3908'}}>Log Off</Text>
           </Button>
         </Left>
         <Body>
-          <Title>Home</Title>
+          <Title style = {{color: 'white'}}> Home</Title>
         </Body>
         <Right />
       </Header>
@@ -85,55 +85,54 @@ export default class Home extends React.Component {
 
   render() {
     const code_filter = this.state.data.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
-    //console.warn(filteredEmails);
     return (
-      <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
+      <Container style = {styles.bodyStyle}> 
+          <Item rounded = {true}
+          style = {styles.itemInput}>
+            <Icon style = {{marginLeft: 10, marginRight: 10}} name="ios-search" />
             <Input placeholder="Search" onChangeText={(term) => { this.searchUpdated(term) }}/>
-            <Icon name="ios-mic" />
           </Item>
-          <Button transparent>
-            <Text>Search</Text>
-          </Button>
-        </Header>
         <Content padder>
+        <View style = {styles.newEntryBtnView}> 
           <Button
             full
             rounded
             primary
-            style={{ marginTop: 10, marginBottom: 10, backgroundColor: 'green' }}
+            //style={{ marginTop: 10, marginBottom: 10, backgroundColor: 'green' }}
+            style = {styles.newEntryBtn}
             onPress={() => this.props.navigation.navigate(Actions.addscreen1({user:this.state.userId}))}
           >
-            <Text>Add New Entry</Text>
+            <Text>ADD ENTRY</Text>
 
           </Button>
-          <List>
-         {code_filter.map(v => {
-             return <ListItem full
-              rounded
-              primary
-              style={{ marginTop: 10 ,padding: 10 }}
-              button = {true}
+          </View>
+          <View style = {styles.bigListStyle}>
+          <List
+          rounded = {true}>
+          {code_filter.map(v => {
+            // return <ListItem full
+            //   style = {styles.homeListStyle}
+            //   button = {true}
 
-              onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
-              >
+            //   onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
+            //   >
 
-              <Card onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} style={{width: '100%', height: 100}} >
-                   <Text style={{textAlign: 'left'}} >{v.title}</Text>
-                   <SyntaxHighlighter language={v.language} style={tomorrowNightBlue} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
-                   <Text style={{fontSize: 15, color: 'blue'}} >{v.language}</Text>
+              return <Card transparent = {true} 
+                      bordered = {false} 
+                      style = {styles.cardStyle} 
+                      onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} >
+                  <Text style={{fontSize: 18, fontFamily: "Helvetica Neue", textAlign: 'center', color: 'white'}} >{v.title} - {v.language}</Text>
+                  <SyntaxHighlighter language={v.language} style={tomorrowNightEighties} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
+                  <View style = {{backgroundColor: "red"}}>
+                  {/* <Text style={{fontSize: 15, fontFamily: "Helvetica Neue", color: 'white'}} >{v.language}</Text> */}
+                  </View>
                 </Card>
 
-              </ListItem>
-         })}
-         </List>
-
-
-
-
-                </Content>
+              // </ListItem>
+            })}
+          </List>
+          </View>
+          </Content>
       </Container>
     );
 

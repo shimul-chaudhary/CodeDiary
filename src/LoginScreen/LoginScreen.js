@@ -65,7 +65,7 @@ export default class LoginScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header style = {{backgroundColor: 'white'}}>
+      <Header style = {{backgroundColor: '#2f2f2f'}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.login())}>
             <Text></Text>
@@ -85,15 +85,19 @@ export default class LoginScreen extends React.Component {
        <Content padder>
         <View style = {styles.logImg}>
           <Image
-            source={require('./../../cs_login.png')}
+            resizeMethod = "auto"
+            resizeMode = "cover"
+            source={require('./../../snippet_img.png')}
           />
         </View>
-          <Form>
-            <Item floatingLabel
+          <Form style = {{marginTop: 70}}>
+            <Item
             underline = {true}
-            style = {{marginTop: 50}}>
-            <Label>Email</Label>
+            rounded = {true}
+            style = {styles.itemInput}>
               <Input 
+              placeholder = "Email"
+              style = {{marginLeft: 18}}
               onChangeText={(text) => this.setState({email: text})}
               value = {this.state.email}
               autoCorrect = {false}
@@ -102,10 +106,12 @@ export default class LoginScreen extends React.Component {
               keyboardAppearance = "dark"
               />
             </Item>
-            <Item floatingLabel
-            style = {{marginTop: 30}}>
-            <Label>Password</Label>
+            <Item last
+            underline = {true}
+            rounded = {true}
+            style = {styles.itemInput}>
               <Input 
+              placeholder = "Password"
               onChangeText={(text) => this.setState({password: text})}
               value = {this.state.password}
               secureTextEntry = {true}
@@ -116,26 +122,28 @@ export default class LoginScreen extends React.Component {
               />
             </Item>
           </Form>
+          <View style = {styles.logInBtnView}>
           <Button
             full
             rounded
             primary
-            style={{ marginTop: 40 }}
-            onPress = {this.login}
-            //onPress={() => this.props.navigation.navigate("Home")}
-            >
-            <Text>Login</Text>
-          </Button>
-          <Button
-            full
-            rounded
-            primary
-            style={{ marginTop: 10 }}
+            style = {styles.logInRegisterBtn}
             onPress = {this.register}
             //onPress={() => this.props.navigation.navigate("Home")}
-          >
-            <Text>Register</Text>
+            >
+            <Text style = {{color: 'white', fontStyle: "normal", fontSize: 20, fontFamily: "Helvetica Neue"}}>REGISTER</Text>
           </Button>
+          <Button
+            full
+            rounded
+            primary
+            style = {styles.logInLoginBtn}
+            onPress = {this.login}
+            //onPress={() => this.props.navigation.navigate("Home")}
+          >
+            <Text style = {{color: 'white', fontStyle: "normal", fontSize: 20, fontFamily: "Helvetica Neue"}}>LOGIN</Text>
+          </Button>
+          </View>
         </Content>
       </Container>
     );
