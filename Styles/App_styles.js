@@ -84,8 +84,11 @@ export const Main_styles = {
     },
     homeListStyle:{
       marginTop: 10,
-      backgroundColor: '#417B5A',
-      padding: 10,
+      backgroundColor: '#2f2f2f',
+      borderBottomWidth: 0,
+      borderRightWidth: 0,
+      borderLeftWidth: 0,
+      borderTopWidth: 0
     },
     bigListStyle:{
       
@@ -93,13 +96,36 @@ export const Main_styles = {
     cardStyle:{
       backgroundColor: '#417B5A',
       width: '100%', 
-      height: 100,
+      height: 200,
       marginTop: 20,
       borderColor: '#417B5A',
       borderBottomWidth: 5,
       borderRightWidth: 5,
       borderLeftWidth: 5,
       borderBottomColor: '#417B5A',
-      borderTopWidth: 0
+      borderTopWidth: 5
+    },
+    deleteBtn:{
+      backgroundColor: '#BC3908',
+      width: 150,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 10
+    },
+    saveBtn:{
+      backgroundColor: '#417B5A',
+      width: 150,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginRight: 10
+    },
+    editEntryBtnView:{
+      //marginTop: 50,
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
 }

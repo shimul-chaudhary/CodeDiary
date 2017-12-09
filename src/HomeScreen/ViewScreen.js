@@ -4,7 +4,7 @@ import {Main_styles as styles} from './../../Styles/App_styles';
 import { StyleSheet,View, Alert } from 'react-native';
 import {Actions} from "react-native-router-flux";
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
-import { ocean } from 'react-syntax-highlighter/dist/styles';
+import { ocean, tomorrowNightEighties } from 'react-syntax-highlighter/dist/styles';
 import { Share } from 'react-native';
 import { NavigationActions } from 'react-navigation'
 
@@ -19,14 +19,14 @@ export default class ViewScreen extends React.Component {
   }
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header>
+      <Header style = {{backgroundColor: '#2f2f2f'}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.addEntryPage())}>
-            <Icon name="arrow-back" />
+            <Icon style = {{color: '#BC3908'}} name="arrow-back" />
           </Button>
         </Left>
         <Body>
-          <Title>Code Details</Title>
+          <Title style = {{color: 'white'}}>Code Details</Title>
         </Body>
         <Right></Right>
       </Header>
@@ -34,40 +34,35 @@ export default class ViewScreen extends React.Component {
   });
   render() {
     return (
-      <Container>
+      <Container style = {styles.bodyStyle}>
         <Content padder>
 
-          <Text>Title: {this.props.data.title}</Text>
-          <Text>---</Text>
-          <Text>Code:</Text>
-          <Card style={{width: '100%', height: 200, backgroundColor: 'powderblue'}}>
-              <SyntaxHighlighter language={this.props.data.language} style={ocean}>{this.props.data.codeEntry}</SyntaxHighlighter>
+          <Text style = {{fontSize: 20, fontFamily: "Helvetica Neue", textAlign: 'center', color: 'white'}}>{this.props.data.title}</Text>
+          {/* <Text>---</Text> */}
+          {/* <Text style = {{fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Code:</Text> */}
+          <Card style={styles.cardStyle}>
+              <SyntaxHighlighter language={this.props.data.language} style={tomorrowNightEighties}>{this.props.data.codeEntry}</SyntaxHighlighter>
           </Card>
-          <Text>Comments:</Text>
-          <Card>
+          <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Comments:</Text>
+          <Card
+          rounded = {true}>
             <CardItem>
               <Text>{this.props.data.comment}</Text>
             </CardItem>
           </Card>
-          <Text>Language:</Text>
-          <Card>
+          <Text style = {{fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Language:</Text>
+          <Card
+          rounded = {true}>
             <CardItem>
               <Text>{this.props.data.language}</Text>
             </CardItem>
           </Card>
-          <Text>Tags:</Text>
-          <Card>
-            <CardItem>
-              <Text>{this.props.data.metaTags}</Text>
-            </CardItem>
-          </Card>
 
-
-          <Button
+        <View style = {styles.logInBtnView}>
+          <Button style = {styles.logInRegisterBtn}
             full
             rounded
             primary
-            style={{ marginTop: 10 }}
             onPress={() => Share.share({
               message:this.props.data.codeEntry,
               title: this.props.data.title
@@ -81,19 +76,17 @@ export default class ViewScreen extends React.Component {
             })
           }
           >
-            <Text>Share</Text>
+            <Text>SHARE</Text>
           </Button>
-          <Button
+          <Button style = {styles.logInLoginBtn}
             full
             rounded
             primary
-            style={{ marginTop: 10 }}
             onPress={() => this.props.navigation.navigate(Actions.EditEntry1({data:this.props.data}))}
           >
-            <Text>Edit</Text>
+            <Text>EDIT</Text>
           </Button>
-
-          
+          </View>
         </Content>
       </Container>
     );

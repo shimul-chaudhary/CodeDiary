@@ -110,25 +110,29 @@ export default class Home extends React.Component {
           <List
           rounded = {true}>
           {code_filter.map(v => {
-            // return <ListItem full
-            //   style = {styles.homeListStyle}
-            //   button = {true}
+            return <ListItem full
+              style = {styles.homeListStyle}
+              onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
+              >
 
-            //   onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}
-            //   >
-
-              return <Card transparent = {true} 
+              <Card transparent = {true} 
                       bordered = {false} 
                       style = {styles.cardStyle} 
-                      onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} >
-                  <Text style={{fontSize: 18, fontFamily: "Helvetica Neue", textAlign: 'center', color: 'white'}} >{v.title} - {v.language}</Text>
-                  <SyntaxHighlighter language={v.language} style={tomorrowNightEighties} onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
+                      button onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} >
+                  <Text  onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )} 
+                        style={{fontSize: 18, fontFamily: "Helvetica Neue", textAlign: 'center', color: 'white'}} >
+                        {v.title} - {v.language}
+                        </Text>
+                  <SyntaxHighlighter 
+                  language={v.language}  
+                  style={tomorrowNightEighties} 
+                  onPress={() => this.props.navigation.navigate(Actions.viewscreen1({ data : v }) )}>{v.codeEntry}</SyntaxHighlighter>
                   <View style = {{backgroundColor: "red"}}>
                   {/* <Text style={{fontSize: 15, fontFamily: "Helvetica Neue", color: 'white'}} >{v.language}</Text> */}
                   </View>
                 </Card>
 
-              // </ListItem>
+              </ListItem>
             })}
           </List>
           </View>

@@ -48,14 +48,14 @@ this.props.navigation.navigate(Actions.addEntryPage());
   }
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header>
+      <Header style = {{backgroundColor: '#2f2f2f'}}>
         <Left>
           <Button transparent onPress={() => navigation.navigate(Actions.addEntryPage())}>
-            <Icon name="arrow-back" />
+            <Icon style = {{color: '#BC3908'}} name="arrow-back" />
           </Button>
         </Left>
         <Body>
-          <Title>Home</Title>
+          <Title style = {{color: 'white'}}>Add New Entry</Title>
         </Body>
         <Right />
       </Header>
@@ -64,62 +64,49 @@ this.props.navigation.navigate(Actions.addEntryPage());
   render() {
 
     return (
-      <Container>
-        <Header>
-          <Left>
-
-          </Left>
-          <Body>
-            <Title>Add New Entry</Title>
-          </Body>
-          <Right />
-        </Header>
+      <Container style = {styles.bodyStyle}>
         <Content padder>
-          <Text>Title:</Text>
+          <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Title:</Text>
             <TextInput
-              style={{height: 40, borderColor: 'blue', borderWidth: 1}}
+              style={{height: 40, borderColor: 'white', borderWidth: 1, backgroundColor: 'white'}}
               onChangeText={(text) => this.setState({text})}
               value={this.state.text}
             />
-          <Text>Code:</Text>
+          <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Code:</Text>
               <TextInput
-                style={{height: 40, borderColor: 'blue', borderWidth: 1}}
+                style={{height: 200, borderColor: '#417B5A', borderWidth: 5, backgroundColor: 'white'}}
                 onChangeText={(text1) => this.setState({text1})}
                 value={this.state.text1}
                 multiline={true}
               />
-          <Text>Comments:</Text>
+          <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Comments:</Text>
               <TextInput
-                style={{height: 40, borderColor: 'blue', borderWidth: 1}}
+                style={{height: 40, borderColor: 'white', borderWidth: 1, backgroundColor: 'white'}}
                 onChangeText={(text2) => this.setState({text2})}
                 value={this.state.text2}
               />
-          <Text>Language:</Text>
+          <Text style = {{marginTop: 10, fontSize: 16, fontFamily: "Helvetica Neue", textAlign: 'left', color: 'white'}}>Language:</Text>
             <Picker
               selectedValue={this.state.text3}
               onValueChange={(itemValue, itemIndex) => this.setState({text3: itemValue})}>
-              <Picker.Item label="Java" value="java" />
-              <Picker.Item label="JavaScript" value="javaScript" />
-              <Picker.Item label="Python" value="python" />
-              <Picker.Item label="Ruby" value="ruby" />
-              <Picker.Item label="Elm" value="elm" />
-              <Picker.Item label="React" value="react" />
+              <Picker.Item color = "white" label="Java" value="java" />
+              <Picker.Item color = "white" label="JavaScript" value="javaScript" />
+              <Picker.Item color = "white" label="Python" value="python" />
+              <Picker.Item color = "white" label="Ruby" value="ruby" />
+              <Picker.Item color = "white" label="Elm" value="elm" />
+              <Picker.Item color = "white" label="React" value="react" />
             </Picker>
-          <Text>Tags:</Text>
-            <TextInput
-              style={{height: 40, borderColor: 'blue', borderWidth: 1}}
-              onChangeText={(text4) => this.setState({text4})}
-              value={this.state.text4}
-            />
+            <View style = {styles.editEntryBtnView}>
             <Button
               full
               rounded
               primary
-              style={{ marginTop: 10, marginBottom: 10, backgroundColor: 'green' }}
+              style={styles.logInLoginBtn}
               onPress={this.savestate}
             >
               <Text>SAVE</Text>
             </Button>
+            </View>
         </Content>
 
       </Container>
